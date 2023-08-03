@@ -1,125 +1,237 @@
+import 'package:another_carousel_pro/another_carousel_pro.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: CarouselSlideDemo(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class CarouselSlideDemo extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _CarouselSlideDemoState createState() => _CarouselSlideDemoState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _CarouselSlideDemoState extends State<CarouselSlideDemo> {
+  final List<String> images = [
+    "assets/images/b1.png",
+    "assets/images/b2.png",
+    "assets/images/b3.png",
+  ];
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  final List<ContentItem> items = [
+    ContentItem(
+      icon: Icons.vaccines,
+      title: "Ao Nascer",
+      subtitle: "BCG | HEPATITE B",
+      color: Color(0xFF004393),
+      titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+      subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+    ContentItem(
+        icon: Icons.vaccines,
+        title: "2 Meses",
+        subtitle: "1ª DOSE - PENTAVALENTE | ROTAVÍRUS | PNEUMO 10 | VIP (POLIO).",
+        color: Color(0xFF004393),
+        titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+        subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+
+    ContentItem(
+        icon: Icons.vaccines,
+        title: "3 Meses",
+        subtitle: "1ª DOSE - MENINGO C",
+        color: Color(0xFF004393),
+        titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+        subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+    ContentItem(
+        icon: Icons.vaccines,
+        title: "4 Meses",
+        subtitle: "2ª DOSE - PENTAVALENTE | ROTAVÍRUS | PNEUMO 10 | VIP (POLIO).",
+        color: Color(0xFF004393),
+        titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+        subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+    ContentItem(
+        icon: Icons.vaccines,
+        title: "5 Meses",
+        subtitle: "2ª DOSE - MENINGO C",
+        color: Color(0xFF004393),
+        titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+        subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+    ContentItem(
+        icon: Icons.vaccines,
+        title: "6 Meses",
+        subtitle: "3ª DOSE - PENTAVALENTE | VIP (POLIO) | INFLUENZA.",
+        color: Color(0xFF004393),
+        titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+        subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+    ContentItem(
+        icon: Icons.vaccines,
+        title: "9 Meses",
+        subtitle: "1ª Dose - FEBRE | AMARELA",
+        color: Color(0xFF004393),
+        titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+        subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+    ContentItem(
+        icon: Icons.vaccines,
+        title: "1 Ano",
+        subtitle: "1ª DOSE - TRIPLECEVIRAL / "
+            "                            REFORÇO - MENINGO C | PNEUMO 10",
+        color: Color(0xFF004393),
+        titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+        subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+    ContentItem(
+        icon: Icons.vaccines,
+        title: "1 Ano e 3 Meses",
+        subtitle: "1ª Dose - HEPATITE A |                             REFORÇO - DTP E VOP | TETRAVIRAL",
+        color: Color(0xFF004393),
+        titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+        subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+    ContentItem(
+        icon: Icons.vaccines,
+        title: "4 Anos",
+        subtitle: "2ª REFORÇO - DTP E VOP | F. A. |VARICELA",
+        color: Color(0xFF004393),
+        titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+        subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+    ContentItem(
+        icon: Icons.vaccines,
+        title: "Adolescentes",
+        subtitle: "HPV (9 anos) | MENINGOCÓCICA | ACWY",
+        color: Color(0xFF004393),
+        titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+        subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+    ContentItem(
+        icon: Icons.vaccines,
+        title: "Adultos",
+        subtitle: "HEPATITE B | FEBRE AMARELA | DUPLA ADULTO | TRIPLECE VIRAL",
+        color: Color(0xFF004393),
+        titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+        subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+    ContentItem(
+        icon: Icons.vaccines,
+        title: "Gestantes",
+        subtitle: "HEPATITE B | DUPLA ADULTO | dTpa | INFLUENZA",
+        color: Color(0xFF004393),
+        titleColor: Color(0xFFFDD501), // Cor do título para o primeiro item.
+        subtitleColor: Colors.white,
+        iconColor: Colors.white
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text('ESQUEMA DE VACINAÇÃO'),
+        centerTitle: true,
+        backgroundColor: Color(0xFF004193),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      body: Column(
+        children: [
+          SizedBox(
+            height: 200.0,
+            width: double.infinity,
+            child: AnotherCarousel(
+              images: images.map((imagePath) => AssetImage(imagePath)).toList(),
+              dotSize: 6,
+              indicatorBgPadding: 5.0,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 2.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: items[index].color,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: ListTile(
+                      leading: Icon(items[index].icon, color: items[index].iconColor,),
+                      title: Text(
+                        items[index].title,
+                        style: TextStyle(color: items[index].titleColor), // Define a cor do título.
+                      ),
+                      subtitle: Text(
+                        items[index].subtitle,
+                        style: TextStyle(color: items[index].subtitleColor), // Define a cor do subtítulo.
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+
+          Container(
+            height: 114,
+            color: Colors.grey[350],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text("Apoio:",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Image.asset('assets/images/l1.png'),
+                Image.asset('assets/images/l2.png'),
+              ],
+            ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+class ContentItem {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final Color color;
+  final Color titleColor;
+  final Color subtitleColor;
+  final Color iconColor;
+
+  ContentItem({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.color,
+    required this.titleColor,
+    required this.subtitleColor,
+    required this.iconColor,
+  });
 }
